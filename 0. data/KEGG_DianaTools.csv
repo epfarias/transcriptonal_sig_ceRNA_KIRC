@@ -1,0 +1,44 @@
+"KEGG pathway",p-value,#genes,#miRNAs
+"Fatty acid biosynthesis",2.10896319219e-12,3,2
+"Prion diseases",2.10896319219e-12,4,2
+"Proteoglycans in cancer",1.0725634001e-07,55,2
+"TGF-beta signaling pathway",3.02744297675e-07,28,2
+"Viral carcinogenesis",8.90951239994e-06,50,2
+"Signaling pathways regulating pluripotency of stem cells",1.8703103181e-05,44,2
+"Renal cell carcinoma",5.30698816989e-05,24,2
+"Prostate cancer",6.48059618017e-05,33,2
+"Chronic myeloid leukemia",6.812087724e-05,28,2
+"FoxO signaling pathway",0.000125147748158,40,2
+"Adherens junction",0.000269523696583,26,2
+"Pathways in cancer",0.000435832406279,96,2
+Melanoma,0.00127575313943,25,2
+"Bacterial invasion of epithelial cells",0.00170136765733,24,2
+"Thyroid hormone signaling pathway",0.00307925604009,29,2
+"Transcriptional misregulation in cancer",0.00307925604009,44,2
+"Cell cycle",0.00321154136656,35,2
+Endocytosis,0.00423152326672,54,2
+"HTLV-I infection",0.00437960048474,62,2
+"Hepatitis B",0.00666309724467,33,2
+"Arrhythmogenic right ventricular cardiomyopathy (ARVC)",0.00666309724467,17,2
+"Pancreatic cancer",0.00783421495375,21,2
+"Lysine degradation",0.0107188618432,11,2
+"Axon guidance",0.0141720778391,35,2
+"p53 signaling pathway",0.0154633346125,19,2
+"PI3K-Akt signaling pathway",0.0158349654496,77,2
+"Focal adhesion",0.0184575787568,51,2
+"Ubiquitin mediated proteolysis",0.0200648863935,37,2
+Glioma,0.025326544225,18,2
+"Rap1 signaling pathway",0.0255818101287,49,2
+"Ras signaling pathway",0.0297857949248,49,2
+"HIF-1 signaling pathway",0.0297857949248,29,2
+"Bladder cancer",0.0297857949248,13,2
+"Synaptic vesicle cycle",0.0309555013492,15,2
+"mTOR signaling pathway",0.0327436272803,19,2
+"Choline metabolism in cancer",0.0388832045375,27,2
+"Pathogenic Escherichia coli infection",0.0439732425619,17,2
+Shigellosis,0.0440550337172,17,2
+"Small cell lung cancer",0.0444169682054,24,2
+"Fatty acid metabolism",0.044851889883,6,2
+"Circadian rhythm",0.04993072994,11,2
+"Thyroid cancer",0.04993072994,8,2
+

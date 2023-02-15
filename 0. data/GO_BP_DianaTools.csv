@@ -1,0 +1,71 @@
+"GO Category",p-value,#genes,#miRNAs
+"cellular nitrogen compound metabolic process",1.14048241329e-54,581,2
+"biosynthetic process",6.22120307039e-37,481,2
+"cellular protein modification process",4.39240915088e-26,294,2
+"neurotrophin TRK receptor signaling pathway",3.22973655768e-15,48,2
+"gene expression",5.03629368555e-13,78,2
+biological_process,4.53494275825e-12,1578,2
+"epidermal growth factor receptor signaling pathway",1.06944088979e-11,43,2
+"transcription, DNA-templated",3.73885693651e-10,291,2
+"blood coagulation",1.55486090749e-09,63,2
+"cellular component assembly",3.45291687277e-09,149,2
+"axon guidance",4.03256501052e-09,74,2
+"Fc-epsilon receptor signaling pathway",7.00296896905e-09,28,2
+"phosphatidylinositol-mediated signaling",2.09369763505e-08,30,2
+"catabolic process",4.78866674138e-08,199,2
+"viral process",6.55413314871e-07,55,2
+"macromolecular complex assembly",7.41041790929e-07,101,2
+"cell-cell signaling",7.55016949779e-07,83,2
+"symbiosis, encompassing mutualism through parasitism",1.10576443973e-06,60,2
+"transcription initiation from RNA polymerase II promoter",2.75163167062e-06,37,2
+"nucleobase-containing compound catabolic process",2.65942584777e-05,96,2
+"insulin receptor signaling pathway",6.18239432628e-05,29,2
+"response to stress",6.18239432628e-05,218,2
+"synaptic transmission",8.65990647646e-05,52,2
+"protein complex assembly",0.000143713840994,84,2
+"fibroblast growth factor receptor signaling pathway",0.000160352482789,29,2
+"cell motility",0.000239496112665,68,2
+"positive regulation of transcription, DNA-templated",0.000262056118424,113,2
+"cellular lipid metabolic process",0.000337881945194,21,2
+"mitotic cell cycle",0.000337881945194,42,2
+"cell death",0.000337881945194,96,2
+"positive regulation of transcription from RNA polymerase II promoter",0.000392841731202,166,2
+"signal transduction",0.000456251451498,501,2
+"nervous system development",0.000868003841077,58,2
+"negative regulation of transcription, DNA-templated",0.000868003841077,99,2
+"transcription from RNA polymerase II promoter",0.000924128100383,77,2
+"cell junction organization",0.00105821581654,23,2
+"regulation of neuron projection development",0.00282194565417,11,2
+"small molecule metabolic process",0.0031698834626,199,2
+"cell junction assembly",0.00499689871492,11,2
+"transforming growth factor beta receptor signaling pathway",0.00511696672858,28,2
+"Fc-gamma receptor signaling pathway involved in phagocytosis",0.00527142681523,11,2
+"phosphatidylinositol biosynthetic process",0.00527142681523,12,2
+"in utero embryonic development",0.00527142681523,47,2
+"post-Golgi vesicle-mediated transport",0.00634442419436,10,2
+"post-embryonic development",0.00634442419436,27,2
+"cytoskeleton organization",0.00692176273096,73,2
+"post-translational protein modification",0.00781066345862,19,2
+"cytoskeleton-dependent intracellular transport",0.00938150563063,17,2
+"negative regulation of transcription from RNA polymerase II promoter",0.0096527824666,117,2
+"epithelial to mesenchymal transition",0.0127000435967,13,2
+"cell cycle arrest",0.0127000435967,27,2
+"regulation of small GTPase mediated signal transduction",0.0133900732817,28,2
+"cell proliferation",0.0133900732817,72,2
+"platelet degranulation",0.0145753786855,11,2
+"platelet activation",0.0152402709206,23,2
+"nucleocytoplasmic transport",0.0195901244603,42,2
+"neuron migration",0.0243807001614,30,2
+"cell-cell junction organization",0.0244598891935,13,2
+"cellular protein metabolic process",0.0244598891935,40,2
+"nuclear-transcribed mRNA catabolic process, deadenylation-dependent decay",0.0317973748108,10,2
+"chromatin organization",0.0317973748108,17,2
+"skeletal system development",0.0317973748108,28,2
+"DNA metabolic process",0.0317973748108,74,2
+"regulation of circadian rhythm",0.0341784131582,14,2
+"anatomical structure morphogenesis",0.039357329327,15,2
+"negative regulation of cell proliferation",0.0415654054228,67,2
+"negative regulation of epithelial cell proliferation",0.044998900696,18,2
+"cellular component movement",0.0474338010358,15,2
+"regulation of transcription from RNA polymerase II promoter",0.0482278123531,69,2
+

@@ -1,0 +1,13 @@
+"GO Category",p-value,#genes,#miRNAs
+"ion binding",5.49499637759e-35,648,2
+molecular_function,4.76550561529e-28,1657,2
+"nucleic acid binding transcription factor activity",1.93684873055e-20,150,2
+"protein binding transcription factor activity",3.69421534671e-17,85,2
+"enzyme binding",2.53265944981e-11,156,2
+"cytoskeletal protein binding",3.93569097043e-05,88,2
+"transcription factor binding",0.000732574843062,79,2
+"RNA binding",0.00079961202414,185,2
+"enzyme regulator activity",0.00170684093392,87,2
+"transcription corepressor activity",0.0446175211535,35,2
+"RNA polymerase II core promoter proximal region sequence-specific DNA binding",0.0446175211535,40,2
+
