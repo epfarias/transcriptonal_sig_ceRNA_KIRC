@@ -65,10 +65,12 @@ data_aarlens <- left_join(mir_Exp,rna_Exp,by = "sample")
 
 data_aarlens <- merge(x = kirc_clindata, y = data_aarlens, by.x = "sampleID", by.y = "sample", all.y = TRUE)
 
-rm(mir_Exp,rna_Exp, kirc_clindata, kirc_phenotype, kirc_survival, destfile, url)
+names(data_aarlens)[2] <- "age"
+
+rm(mir_Exp,rna_Exp, kirc_phenotype, kirc_survival, destfile, url)
 
 ##### Putting the gene signature symbols ####
-sign <-  c("HMMR", "PTTG1", "HECW2","RFLNB", "INSR", "BTBD11", "AF117829.1", 
+sign <-  c( "age","HMMR", "PTTG1", "HECW2","RFLNB", "INSR", "BTBD11","RASD1", "AF117829.1", 
            "SNHG15", "hsa.miR.381.3p", "hsa.miR.130a.3p")
 
 #### Constructing the dataset for Aarlen's Analysis ####
@@ -87,6 +89,7 @@ data_aarlens <- data_aarlens %>%
 data_aarlens <- data_aarlens[!is.na(data_aarlens$pathologic_T), ]
 
 table(data_aarlens$gender)
+
 data_aarlens$gender <-ifelse(data_aarlens$gender == "MALE", 1, 0)
 
 sign <- intersect(sign, colnames(data_aarlens))
@@ -111,8 +114,8 @@ pal.bands(alphabet(), alphabet2(), glasbey(), kelly(),
 
 #vars <- c("Intercept", "age", "genderMale",  "metastasisM1", "metastasisMX",  "AL353637.1", "AL138830.2", "DPP6", "FOXJ1", "HHLA2", "MICG", "LIMCH1", "VSX1", "AR", "IL4", "CASR", "CRH", "GNB3", "SAA1")
 
-vars <- c("HMMR", "PTTG1", "HECW2","RFLNB", "INSR", "BTBD11", "AF117829.1", 
-          "SNHG15", "hsa.miR.381.3p", "hsa.miR.130a.3p")
+vars <- c("Intercept", "age","HMMR", "PTTG1", "HECW2","RFLNB", "INSR", "BTBD11", "AF117829.1", 
+          "SNHG15", "hsa.miR.381.3p", "hsa.miR.130a.3p", "RASD1")
 
 variables <- rev(factor(vars, levels=vars))
 #-- color decrease of lightness
@@ -157,17 +160,18 @@ p1 <- ggcoefstats(
 )
 #+  ggplot2::scale_y_discrete(labels = vars) 
 
-p1[["layers"]][[4]][["data"]][["expression"]][[1]] <- "list(~widehat(italic(beta))=='-5.37 \U00D7 10'^'-4', ~italic(z)=='-0.9230', ~italic(p)=='3.56 \U00D7 10'^'-1')"               
-p1[["layers"]][[4]][["data"]][["expression"]][[2]] <- "list(~widehat(italic(beta))=='-1.71 \U00D7 10'^'-5', ~italic(z)=='-0.7650', ~italic(p)=='4.44 \U00D7 10'^'-1')" 
-p1[["layers"]][[4]][["data"]][["expression"]][[3]] <- "list(~widehat(italic(beta))=='1.49 \U00D7 10'^'-4', ~italic(z)==' 2.4500', ~italic(p)=='1.43 \U00D7 10'^'-2')"  
-p1[["layers"]][[4]][["data"]][["expression"]][[4]] <- "list(~widehat(italic(beta))=='-1.48 \U00D7 10'^'-4', ~italic(z)=='-2.2900', ~italic(p)=='2.18 \U00D7 10'^'-2')" 
-p1[["layers"]][[4]][["data"]][["expression"]][[5]] <- "list(~widehat(italic(beta))=='1.04 \U00D7 10'^'-4', ~italic(z)=='1.4100', ~italic(p)=='1.59 \U00D7 10'^'-1')"  
-p1[["layers"]][[4]][["data"]][["expression"]][[6]] <- "list(~widehat(italic(beta))=='-1.02 \U00D7 10'^'-4', ~italic(z)=='-0.6700', ~italic(p)=='5.03 \U00D7 10'^'-1')"  
-p1[["layers"]][[4]][["data"]][["expression"]][[7]] <- "list(~widehat(italic(beta))=='3.64 \U00D7 10'^'-5', ~italic(z)=='1.4400', ~italic(p)==' 1.50 \U00D7 10'^'-1')"  
-p1[["layers"]][[4]][["data"]][["expression"]][[8]] <- "list(~widehat(italic(beta))=='3.25 \U00D7 10'^'-4', ~italic(z)=='4.4800', ~italic(p)=='7.57 \U00D7 10'^'-6')"
-p1[["layers"]][[4]][["data"]][["expression"]][[9]] <- "list(~widehat(italic(beta))=='-2.25 \U00D7 10'^'-5', ~italic(z)=='-0.0251', ~italic(p)=='9.80 \U00D7 10'^'-1')"  
-p1[["layers"]][[4]][["data"]][["expression"]][[10]] <- "list(~widehat(italic(beta))=='4.23 \U00D7 10'^'-5', ~italic(z)=='1.8600', ~italic(p)=='6.27 \U00D7 10'^'-2')"
-p1[["layers"]][[4]][["data"]][["expression"]][[11]] <- "list(~widehat(italic(beta))=='1.99 \U00D7 10'^'-4', ~italic(z)=='2.6100', ~italic(p)=='9.18 \U00D7 10'^'-3')"  
+p1[["layers"]][[4]][["data"]][["expression"]][[1]] <- "list(~widehat(italic(beta))=='-3.50 \U00D7 10'^'-3', ~italic(z)=='-0.694', ~italic(p)=='3.96 \U00D7 10'^'-1')"               
+p1[["layers"]][[4]][["data"]][["expression"]][[2]] <- "list(~widehat(italic(beta))=='-3.67 \U00D7 10'^'-4', ~italic(z)=='-5.85', ~italic(p)=='4.16 \U00D7 10'^'-1')" 
+p1[["layers"]][[4]][["data"]][["expression"]][[3]] <- "list(~widehat(italic(beta))=='1.04 \U00D7 10'^'-3', ~italic(z)==' 15.4', ~italic(p)=='1.61 \U00D7 10'^'-2')"  
+p1[["layers"]][[4]][["data"]][["expression"]][[4]] <- "list(~widehat(italic(beta))=='-7.76 \U00D7 10'^'-4', ~italic(z)=='-19.5', ~italic(p)=='2.42 \U00D7 10'^'-2')" 
+p1[["layers"]][[4]][["data"]][["expression"]][[5]] <- "list(~widehat(italic(beta))=='5.91 \U00D7 10'^'-4', ~italic(z)=='11.0', ~italic(p)=='1.60 \U00D7 10'^'-1')"  
+p1[["layers"]][[4]][["data"]][["expression"]][[6]] <- "list(~widehat(italic(beta))=='-3.99 \U00D7 10'^'-4', ~italic(z)=='-4.74', ~italic(p)=='4.82 \U00D7 10'^'-1')"  
+p1[["layers"]][[4]][["data"]][["expression"]][[7]] <- "list(~widehat(italic(beta))=='2.29 \U00D7 10'^'-4', ~italic(z)=='34.3', ~italic(p)==' 1.50 \U00D7 10'^'-1')"  
+p1[["layers"]][[4]][["data"]][["expression"]][[8]] <- "list(~widehat(italic(beta))=='3.30 \U00D7 10'^'-5', ~italic(z)=='-3.01', ~italic(p)=='8.59 \U00D7 10'^'-1')"
+p1[["layers"]][[4]][["data"]][["expression"]][[8]] <- "list(~widehat(italic(beta))=='1.69 \U00D7 10'^'-3', ~italic(z)=='34.9', ~italic(p)=='1.01 \U00D7 10'^'-5')"
+p1[["layers"]][[4]][["data"]][["expression"]][[9]] <- "list(~widehat(italic(beta))=='5.55 \U00D7 10'^'-6', ~italic(z)=='0.142', ~italic(p)=='9.88 \U00D7 10'^'-1')"  
+p1[["layers"]][[4]][["data"]][["expression"]][[10]] <- "list(~widehat(italic(beta))=='3.66 \U00D7 10'^'-4', ~italic(z)=='30.4', ~italic(p)=='6.92 \U00D7 10'^'-2')"
+p1[["layers"]][[4]][["data"]][["expression"]][[11]] <- "list(~widehat(italic(beta))=='9.67 \U00D7 10'^'-4', ~italic(z)=='23.9', ~italic(p)=='8.99 \U00D7 10'^'-3')"  
 
 
 
@@ -184,10 +188,8 @@ p2$data$variable <- factor(p2$data$variable,
 p2 <- p2 +
   scale_fill_manual(values=rev(cols1))
 
-pdf("../figs/fig5_mRMR_aareg.pdf", width = 14, height = 8)
 cowplot::plot_grid(p1, p2, labels = "auto", nrow=1, rel_widths = c(0.7,1))
 
-plot(p1)
 
 #### Odds Ratio ####
 library("finalfit")
