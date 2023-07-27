@@ -9,16 +9,11 @@ library("rtracklayer")
 load("~/transcriptonal_sig_ceRNA_KIRC/0. data/GDCRNATools_KIRC.RData")
 
 
-genes_uniques_signatures <- c("INSR","HMMR","PTTG1","hsa.miR.381.3p","HECW2",
-                              "AF117829.1","RASD1","RFLNB","SNHG15",
-                              "hsa.miR.130a.3p","BTBD11","hsa.miR.377.3p",
-                              "CXCL2","CSNK1E","ANLN","P3H1","SGPP1","CORO2B",
-                              "L1CAM","hsa.miR.130b.3p","hsa.miR.495.3p","LOX",
-                              "KCNN4","FGFR2","CREB5","SPRY4","RNF149",
-                              "C1RL.AS1","PVT1")
+genes_sign <- c("INSR","HMMR","PTTG1","hsa.miR.381.3p","HECW2","AF117829.1",
+                "RASD1","RFLNB","SNHG15","hsa.miR.130a.3p","BTBD11")
 
-genes_uniques_signatures <- genes_uniques_signatures %>% as.data.frame()
-colnames(genes_uniques_signatures) <- "Symbol"
+genes_sign <- genes_sign %>% as.data.frame()
+colnames(genes_sign) <- "Symbol"
 
 ## Anottation -------------------------
 gff <- import.gff("~/transcriptonal_sig_ceRNA_KIRC/0. data/gencode.v41.annotation.gff3")
@@ -30,8 +25,7 @@ gff <- dplyr::distinct(gff)
 
 gff$gene_id <- sub("\\..*", "", gff$gene_id)
 
-
-genes_enrich <- merge(genes_uniques_signatures , gff, by.x = "Symbol", by.y = "gene_name", all.x =  TRUE)
+genes_enrich <- merge(genes_sign , gff, by.x = "Symbol", by.y = "gene_name", all.x =  TRUE)
 
 genes_enrich <- genes_enrich %>% na.omit()
 
@@ -101,6 +95,7 @@ p4 <- barplot(go_MF,
              drop = TRUE, 
              showCategory = 10, 
              title = "GO Molecular Functions")
+plot(p4)
 
 cowplot::plot_grid(p3, p4, ncol=1, labels=LETTERS[1:2])
 
@@ -148,7 +143,7 @@ library("forcats")
 
 KEGG_DT <- read_csv("~/transcriptonal_sig_ceRNA_KIRC/0. data/KEGG_DianaTools.csv")
 KEGG_DT$p.adjust <- p.adjust(KEGG_DT$`p-value`, method = "BH", n = length(KEGG_DT$`p-value`))
-KEGG_DT_mod <- KEGG_DT[-c(1,2,38,40,41,18,14,20,19,34,23,15,21,28,37,24),] ## removendo informações não importantes para o trabalho
+KEGG_DT_mod <- KEGG_DT[-c(1,2,38,40,41,18,14,20,19,34,23,15,21,28,37,24,8,9,13,22,29,33,39,42),] ## removendo informações não importantes para o trabalho
 
 GO_BP_DT <- read_csv("~/transcriptonal_sig_ceRNA_KIRC/0. data/GO_BP_DianaTools.csv")
 GO_BP_DT$p.adjust <- p.adjust(GO_BP_DT$`p-value`, method = "BH", n = length(GO_BP_DT$`p-value`))
@@ -158,16 +153,19 @@ GO_MF_DT <- read_csv("~/transcriptonal_sig_ceRNA_KIRC/0. data/GO_MF_DianaTools.c
 GO_MF_DT$p.adjust <- p.adjust(GO_MF_DT$`p-value`, method = "BH", n = length(GO_MF_DT$`p-value`))
 
 
-KEGG_DT_plot <- ggplot(KEGG_DT) + geom_col(aes(x = fct_reorder(`KEGG pathway`,-log10(`p-value`)) , y = -log10(`p-value`), fill = -log10(`p-value`),)) +
+KEGG_DT_plot <- ggplot(KEGG_DT) + geom_col(aes(x = fct_reorder(`KEGG pathway`,-log10(`p-value`)) , y = -log10(`p-value`), fill = -log10(`p-value`))) +
   coord_flip() + 
   labs(x = "KEGG Pathways", y = "-log10(P-value)", title = "KEGG Pathways altered by miRNAs in Gene Signature") + 
   theme(axis.text.y = element_text(size = 15))
 plot(KEGG_DT_plot)
 
-KEGG_DT_mod_plot <- ggplot(KEGG_DT_mod) + geom_col(aes(x = fct_reorder(`KEGG pathway`,-log10(`p-value`)) , y = -log10(`p-value`), fill = -log10(`p-value`))) +
+KEGG_DT_mod_plot <- ggplot(KEGG_DT_mod) + geom_dotplot(aes(x = fct_reorder(`KEGG pathway`,`#genes`) , y = `#genes`, fill = `p-value`), binaxis = "y", stackdir = "center", binwidth = 0.9) +
   coord_flip() + 
-  labs(x = "KEGG Pathways", y = "-log10(P-value)", title = "KEGG Pathways altered by miRNAs in Gene Signature")+ 
-  theme(axis.text.y = element_text(size = 15))
+  labs(x = "KEGG Pathways", y = "Genes Regulated in Pathway")+ 
+  theme(axis.text.y = element_text(size = 12)) +
+  scale_fill_gradient(low = "red", high = "green") + 
+  scale_size_area(max_size = 1) + 
+  theme_light()
 plot(KEGG_DT_mod_plot)
 
 go_bp_plot <- ggplot(GO_BP_DT) + geom_col(aes(x = fct_reorder(`GO Category`,-log10(`p-value`)) , y = -log10(`p-value`), fill = -log10(`p-value`))) + 
@@ -176,10 +174,13 @@ go_bp_plot <- ggplot(GO_BP_DT) + geom_col(aes(x = fct_reorder(`GO Category`,-log
   theme(axis.text.y = element_text(size = 15))
 plot(go_bp_plot)
 
-go_bp_mod_plot <- ggplot(GO_BP_DT_mod) + geom_col(aes(x = fct_reorder(`GO Category`,-log10(`p-value`)) , y = -log10(`p-value`), fill = -log10(`p-value`))) + 
+go_bp_mod_plot <- ggplot(GO_BP_DT_mod) + geom_dotplot(aes(x = fct_reorder(`GO Category`,`#genes`) , y = `#genes`, fill = `p-value`), binaxis = "y", stackdir = "center", binwidth = 10) +
   coord_flip() + 
-  labs(x = "GO Biological Process", y = "P-value", title = "GO BP altered by miRNAs in Gene Signature") + 
-  theme(axis.title.y = element_text(size = 19))
+  labs(x = "GO Biological Process", y = "Genes Regulated in Pathway", title = "GO BP altered by miRNAs in Gene Signature")+ 
+  theme(axis.text.y = element_text(size = 12)) +
+  scale_fill_gradient(low = "red",high = "blue") + 
+  scale_size_area(max_size = 1) + 
+  theme_light()
 plot(go_bp_mod_plot)
 
 go_mf_plot <- ggplot(GO_MF_DT) + geom_col(aes(x = fct_reorder(`GO Category`,-log10(`p-value`)) , y = -log10(`p-value`), fill = -log10(`p-value`))) + 
@@ -187,3 +188,22 @@ go_mf_plot <- ggplot(GO_MF_DT) + geom_col(aes(x = fct_reorder(`GO Category`,-log
   labs(x = "GO Molecular Functions", y = "-log10(P-value)", title = "GO MF altered by miRNAs in Gene Signature")+ 
   theme(axis.title.y = element_text(size = 20))
 plot(go_mf_plot)
+
+go_mf_plot <- ggplot(GO_MF_DT) + geom_dotplot(aes(x = fct_reorder(`GO Category`,`#genes`) , y = `#genes`, fill = `p-value`), binaxis = "y", stackdir = "center", binwidth = 20) +
+  coord_flip() + 
+  labs(x = "GO Biological Process", y = "Genes Regulated in Pathway", title = "GO MF altered by miRNAs in Gene Signature")+ 
+  theme(axis.text.y = element_text(size = 50)) +
+  scale_fill_gradient(low = "red", high = "blue") + 
+  scale_size_area(max_size = 1) + 
+  theme_light()
+plot(go_mf_plot)
+
+## Figures to paper
+# KEGG
+cowplot::plot_grid(p7, KEGG_DT_mod_plot, ncol=1, labels=LETTERS[1:2])
+
+#go_bp
+cowplot::plot_grid(p3, go_bp_mod_plot, ncol=1, labels=LETTERS[1:2])
+
+#go_mf
+cowplot::plot_grid(p4, go_mf_plot, ncol=1, labels=LETTERS[1:2])
